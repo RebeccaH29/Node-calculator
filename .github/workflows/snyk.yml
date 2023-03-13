@@ -1,0 +1,16 @@
+name: Snyk scan
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  setup:
+    steps:
+      - name: Run Snyk Monitor
+      uses: snyk/actions/docker@master
+      continue-on-error: true
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        command: monitor services   
